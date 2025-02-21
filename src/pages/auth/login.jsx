@@ -1,9 +1,14 @@
 import React, { useState } from "react";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 import { useForm, Controller } from "react-hook-form";
-import { Link } from "react-router-dom";
+import { data, Link } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { loginUser } from "@/store/auth-slice";
+import toast from "react-hot-toast";
 
 const AuthLogin = () => {
+  const dispatch = useDispatch();
+
   const {
     control,
     handleSubmit,
@@ -14,8 +19,16 @@ const AuthLogin = () => {
 
   const [showPassword, setShowPassword] = useState(false);
 
-  const Submit = (data) => {
-    console.log("user credentials", data);
+  const Submit = (formData) => {
+    console.log("user credentials", formData);
+    dispatch(loginUser(formData)).then((data) => {
+      console.log(data);
+      if (data?.payload?.success === true) {
+        toast?.success(data?.payload?.message);
+      } else {
+        toast?.error(data?.payload?.message);
+      }
+    });
   };
   return (
     <>
