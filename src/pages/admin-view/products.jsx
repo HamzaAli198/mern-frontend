@@ -22,7 +22,7 @@ const AdminProducts = () => {
               onClick={openDrawer}
               className="cursor-pointer text-white bg-gray-700 hover:bg-green-600 px-4 py-2 rounded-md"
             >
-              Add New Product
+              Add New Productsss
             </button>
           </div>
 
