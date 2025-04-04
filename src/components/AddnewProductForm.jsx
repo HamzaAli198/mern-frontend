@@ -1,7 +1,11 @@
-import React from "react";
+import React, { useState } from "react";
 import { Controller, useForm } from "react-hook-form";
+import ImageUpload from "./admin-view/ImageUpload";
 
 const AddnewProductForm = () => {
+  const [ImageFile, setImageFile] = useState(null);
+  const [UploadedImageUrl, setUploadedImageUrl] = useState("");
+
   const categories = ["Men", "Women", "Kids", "Accessories", "Footwear"];
   const brands = ["Nike", "Adidas", "Puma", "Reebok", "Under Armour"];
 
@@ -24,6 +28,25 @@ const AddnewProductForm = () => {
           onSubmit={handleSubmit(onSubmit)}
           className="flex flex-col space-y-4"
         >
+          {/* product image */}
+          <div>
+            <label className="block font-semibold">Product Title</label>
+            <Controller
+              name="image"
+              control={control}
+              render={({ field }) => (
+                <ImageUpload
+                  {...field}
+                  ImageFile={ImageFile}
+                  setImageFile={setImageFile}
+                  UploadedImageUrl={UploadedImageUrl}
+                  setUploadedImageUrl={setUploadedImageUrl}
+                />
+              )}
+            />
+            <p className="text-red-500 text-sm">{errors.image?.message}</p>
+          </div>
+
           {/* Product Name */}
           <div>
             <label className="block font-semibold">Product Title</label>
@@ -166,7 +189,7 @@ const AddnewProductForm = () => {
           {/* Submit Button */}
           <button
             type="submit"
-            className="bg-green-600 text-white py-2 rounded-md hover:bg-green-700"
+            className="bg-gray-700 hover:bg-green-600 text-white py-2 rounded-md"
           >
             Add Product
           </button>

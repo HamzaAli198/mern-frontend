@@ -1,8 +1,10 @@
 import AddnewProductForm from "@/components/AddnewProductForm";
+import ImageUpload from "@/components/admin-view/ImageUpload";
 import React, { Fragment, useState } from "react";
 
 const AdminProducts = () => {
   const [isOpen, setIsOpen] = useState(false);
+
 
   const openDrawer = () => {
     setIsOpen(true);
@@ -22,7 +24,7 @@ const AdminProducts = () => {
               onClick={openDrawer}
               className="cursor-pointer text-white bg-gray-700 hover:bg-green-600 px-4 py-2 rounded-md"
             >
-              Add New Productsss
+              Add New Product
             </button>
           </div>
 
